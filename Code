@@ -1,0 +1,20 @@
+from transformers import pipeline
+
+def summarize_text(text):
+    summarizer = pipeline("summarization")
+    summary = summarizer(text, max_length=50, min_length=20, do_sample=False)
+    return summary[0]['summary_text']
+
+if _name_ == "_main_":
+    text = """
+    Rice is one of the most important staple foods in the world. 
+    It feeds more than half of the global population and is cultivated 
+    in diverse climates and regions. With advances in agricultural 
+    technology, scientists are developing new rice varieties that are 
+    more resistant to diseases, require less water, and provide higher 
+    nutritional value. Such improvements are crucial for ensuring food 
+    security in the face of climate change and growing populations.
+    """
+
+    print("Original Text:\n", text)
+    print("\nAI-Generated Summary:\n", summarize_text(text))
